@@ -11,7 +11,7 @@ autojump 204 190
 actionword "go"
 actionword "stop"
 
-actionjump 50..80,201..204 "go" 1
+actionjump 50..80,201..204 "go" to 1
 actionjump 70..100 "stop" offset 30
 
 predicate "alive" 1..200,204
