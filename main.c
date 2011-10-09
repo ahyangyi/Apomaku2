@@ -32,7 +32,7 @@ int initialize ()
     apmk_init_resource();
 }
 
-void on_exit ()
+void on_finale ()
 {
     
     al_rest(10.0);
@@ -89,7 +89,7 @@ int main(int argc, char **argv)
         }
     }
     
-    on_exit ();
+    on_finale ();
     
     return 0;
 }
