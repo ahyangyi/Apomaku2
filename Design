@@ -1,0 +1,5 @@
+Class Sprite:
+    methods
+    + Render
+
+Class 
