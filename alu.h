@@ -8,26 +8,34 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 
-#ifdef __cplusplus
-   extern "C" {
-#endif
+/*
+ */
+template <typename T, int L, int P, bool S> class real_base_t
+{
+private:
+    T value;
 
-typedef struct ALU_SPRITE_CLASS ALU_SPRITE_CLASS;
-typedef struct ALU_SPRITE ALU_SPRITE;
+public:
+    real_base_t () : value(0) {}
+    real_base_t (T x): value(x << P) {}
 
-ALU_SPRITE_CLASS* alu_load_sprite_class(const char* filename);
-ALU_SPRITE_CLASS* alu_load_sprite_class_from_bitmap(const char* filename);
-void alu_destroy_sprite_class(ALU_SPRITE_CLASS* sprite);
+    inline static real_base_t byValue (T x) {real_base_t a; a.value = x; return a;}
 
-ALU_SPRITE* alu_create_sprite (const ALU_SPRITE_CLASS* sprite_class);
-void alu_destroy_sprite (ALU_SPRITE* sprite);
-       
-void alu_sprite_tick(ALU_SPRITE* sprite, const char* action);
-bool alu_sprite_predicate(ALU_SPRITE* sprite, const char* predicate);
-ALLEGRO_BITMAP* alu_get_bitmap (const ALU_SPRITE* sprite);
+    inline real_base_t operator + (const real_base_t& x) const {return real_base_t::byValue(value + x.value);}
+    inline real_base_t& operator += (const real_base_t& x) {value += x.value;}
+    inline real_base_t operator - (const real_base_t& x) const {return real_base_t::byValue(value - x.value);}
+    inline real_base_t& operator -= (const real_base_t& x) {value -= x.value;}
+    inline real_base_t operator * (const real_base_t& x) const
+    {
+        T answer;
 
-#ifdef __cplusplus
-   }
-#endif
+        high = (value >> (L / 2)) * (x.value >> (L / 2));
+        low = (value && ) * x.value;
+        return real_base_t::byValue(value * x.value);
+    }
+};
+
+typedef template real_base_t<int, 32, 16, true> float_32;
+typedef template real_base_t<long long, 64, 32, true> float_32;
 
 #endif
