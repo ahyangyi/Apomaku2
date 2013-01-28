@@ -4,9 +4,9 @@ all: main
 
 main: alu.o resource.o
 
-alu.o: alu.c alu.h
+alu.o: alu.cpp alu.h
 
-resource.o: resource.c resource.h
+resource.o: resource.cpp resource.h
 
 clean:
 	-rm -rf *.o main
