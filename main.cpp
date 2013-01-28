@@ -43,7 +43,7 @@ void on_finale ()
 int main(int argc, char **argv)
 {
     initialize ();
-    
+/*    
     ALU_SPRITE* sprite = alu_create_sprite(APMK_RES_PC[0]);
     
     ALLEGRO_EVENT_QUEUE *queue;
@@ -88,7 +88,7 @@ int main(int argc, char **argv)
             al_flip_display();
         }
     }
-    
+*/
     on_finale ();
     
     return 0;

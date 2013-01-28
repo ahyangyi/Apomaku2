@@ -1,8 +1,8 @@
 #include "../alu.h"
 #include <iostream>
 
-//real_base_t<int, 32, 16> a;
-float_32 a, b;
+typedef real<1023> the_float;
+the_float a, b;
 
 int main ()
 {

@@ -9,27 +9,26 @@
 #include <allegro5/allegro_image.h>
 #include <mpreal.h>
 
-
-class float_32 : public mpfr::mpreal
+template <int P> class real : public mpfr::mpreal
 {
 public:
-    float_32() {}
-    float_32(const float_32& u): mpfr::mpreal(u) {}
-    float_32(const mpfr::mpreal& u): mpfr::mpreal(u) {}
-    float_32(const mpfr_t u): mpfr::mpreal(u) {}    
-    float_32(const mpf_t u) : mpfr::mpreal(u) {}    
-    float_32(const mpz_t u) : mpfr::mpreal(u, 32) {};
-    float_32(const mpq_t u) : mpfr::mpreal(u, 32) {};
-    float_32(const double u) : mpfr::mpreal(u, 32) {};
-    float_32(const long double u) : mpfr::mpreal(u, 32) {};
-    float_32(const unsigned long int u) : mpfr::mpreal(u, 32) {};
-    float_32(const unsigned int u) : mpfr::mpreal(u, 32) {};
-    float_32(const long int u) : mpfr::mpreal(u, 32) {};
-    float_32(const int u) : mpfr::mpreal(u, 32) {};
-    float_32(const char* s) : mpfr::mpreal(s, 32) {};
-    float_32(const std::string& s) : mpfr::mpreal(s, 32) {};
+    real() {}
+    template <int Q> real(const real<Q>& u): mpfr::mpreal(u) {}
+    real(const mpfr::mpreal& u): mpfr::mpreal(u) {}
+    real(const mpfr_t u): mpfr::mpreal(u) {}    
+    real(const mpf_t u) : mpfr::mpreal(u) {}    
+    real(const mpz_t u) : mpfr::mpreal(u, P) {};
+    real(const mpq_t u) : mpfr::mpreal(u, P) {};
+    real(const double u) : mpfr::mpreal(u, P) {};
+    real(const long double u) : mpfr::mpreal(u, P) {};
+    real(const unsigned long int u) : mpfr::mpreal(u, P) {};
+    real(const unsigned int u) : mpfr::mpreal(u, P) {};
+    real(const long int u) : mpfr::mpreal(u, P) {};
+    real(const int u) : mpfr::mpreal(u, P) {};
+    real(const char* s) : mpfr::mpreal(s, P) {};
+    real(const std::string& s) : mpfr::mpreal(s, P) {};
 };
 
-//typedef mpfr::float_32 float_32;
+typedef real<32> alu_real;
 
 #endif
