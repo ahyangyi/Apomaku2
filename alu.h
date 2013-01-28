@@ -7,35 +7,29 @@
 
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
+#include <mpreal.h>
 
-/*
- */
-template <typename T, int L, int P, bool S> class real_base_t
+
+class float_32 : public mpfr::mpreal
 {
-private:
-    T value;
-
 public:
-    real_base_t () : value(0) {}
-    real_base_t (T x): value(x << P) {}
-
-    inline static real_base_t byValue (T x) {real_base_t a; a.value = x; return a;}
-
-    inline real_base_t operator + (const real_base_t& x) const {return real_base_t::byValue(value + x.value);}
-    inline real_base_t& operator += (const real_base_t& x) {value += x.value;}
-    inline real_base_t operator - (const real_base_t& x) const {return real_base_t::byValue(value - x.value);}
-    inline real_base_t& operator -= (const real_base_t& x) {value -= x.value;}
-    inline real_base_t operator * (const real_base_t& x) const
-    {
-        T answer;
-
-        high = (value >> (L / 2)) * (x.value >> (L / 2));
-        low = (value && ) * x.value;
-        return real_base_t::byValue(value * x.value);
-    }
+    float_32() {}
+    float_32(const float_32& u): mpfr::mpreal(u) {}
+    float_32(const mpfr::mpreal& u): mpfr::mpreal(u) {}
+    float_32(const mpfr_t u): mpfr::mpreal(u) {}    
+    float_32(const mpf_t u) : mpfr::mpreal(u) {}    
+    float_32(const mpz_t u) : mpfr::mpreal(u, 32) {};
+    float_32(const mpq_t u) : mpfr::mpreal(u, 32) {};
+    float_32(const double u) : mpfr::mpreal(u, 32) {};
+    float_32(const long double u) : mpfr::mpreal(u, 32) {};
+    float_32(const unsigned long int u) : mpfr::mpreal(u, 32) {};
+    float_32(const unsigned int u) : mpfr::mpreal(u, 32) {};
+    float_32(const long int u) : mpfr::mpreal(u, 32) {};
+    float_32(const int u) : mpfr::mpreal(u, 32) {};
+    float_32(const char* s) : mpfr::mpreal(s, 32) {};
+    float_32(const std::string& s) : mpfr::mpreal(s, 32) {};
 };
 
-typedef template real_base_t<int, 32, 16, true> float_32;
-typedef template real_base_t<long long, 64, 32, true> float_32;
+//typedef mpfr::float_32 float_32;
 
 #endif
