@@ -5,6 +5,7 @@
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_color.h>
 
+#include "sprite.h"
 #include "resource.h"
 
 ALLEGRO_DISPLAY *display = NULL;
@@ -43,8 +44,7 @@ void on_finale ()
 int main(int argc, char **argv)
 {
     initialize ();
-/*    
-    ALU_SPRITE* sprite = alu_create_sprite(APMK_RES_PC[0]);
+//    ALU_SPRITE* sprite = alu_create_sprite(APMK_RES_PC[0]);
     
     ALLEGRO_EVENT_QUEUE *queue;
     ALLEGRO_TIMER *timer;
@@ -79,16 +79,16 @@ int main(int argc, char **argv)
         if (true)
         {
             al_clear_to_color(al_map_rgb(0,0,0));
-            
+/*            
             al_draw_bitmap(alu_get_bitmap(sprite)
                            , turn % (544 * 2) >= 544? 544*2-1 - turn % (544 * 2) : turn % (544 * 2)
                            , turn % (384 * 2) >= 384? 384*2-1 - turn % (384 * 2) : turn % (384 * 2)
                            , 0);
- 
+*/ 
             al_flip_display();
         }
     }
-*/
+    
     on_finale ();
     
     return 0;

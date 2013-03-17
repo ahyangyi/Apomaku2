@@ -1,5 +1,3 @@
-
-
 class Sprite
 {
     void draw ();
